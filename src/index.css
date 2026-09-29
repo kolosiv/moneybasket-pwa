@@ -1,0 +1,87 @@
+@import 'tailwindcss';
+
+/* Светлая тема — значения по умолчанию. */
+@theme {
+  --color-bg: #f3f5f7;
+  --color-surface: #ffffff;
+  --color-raised: #eceff3;
+  --color-ink: #0f1720;
+  --color-muted: #64748b;
+  --color-line: #dde2e8;
+  --color-accent: #0d9488;
+  --color-accent-ink: #ffffff;
+  --color-accent-soft: #d4f3ee;
+  --color-danger: #dc2626;
+  --color-warn: #b45309;
+  --color-ok: #15803d;
+
+  --font-sans:
+    -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto,
+    'Helvetica Neue', sans-serif;
+
+  --radius-card: 1rem;
+}
+
+/* Тёмная тема — по системной настройке, как требует ТЗ. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #0b0f14;
+    --color-surface: #141a21;
+    --color-raised: #1d252e;
+    --color-ink: #e8eef4;
+    --color-muted: #8b9aa9;
+    --color-line: #263039;
+    --color-accent: #5eead4;
+    --color-accent-ink: #06251f;
+    --color-accent-soft: #0f312c;
+    --color-danger: #f87171;
+    --color-warn: #fbbf24;
+    --color-ok: #4ade80;
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-bg);
+    color-scheme: light dark;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    margin: 0;
+    overscroll-behavior-y: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Цифровые суммы должны выстраиваться в колонку. */
+  .tnum {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+    color: inherit;
+  }
+
+  /* iOS зумит страницу на фокусе, если шрифт мельче 16px. */
+  input,
+  select,
+  textarea {
+    font-size: max(16px, 1em);
+  }
+}
+
+@utility safe-bottom {
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@utility safe-top {
+  padding-top: max(0.5rem, env(safe-area-inset-top));
+}
